@@ -8,6 +8,8 @@ int exec_cmd(char *fullpath, char **tokens)
 	int status;
 	char **envp = environ;
 
+	if (tokens == NULL || *tokens == NULL || fullpath == NULL)
+		return (0);
 	/* create child process to execute command */
 	child = fork();
 	if (child == -1)
