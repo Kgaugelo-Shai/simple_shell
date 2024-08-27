@@ -30,6 +30,7 @@ void prompt(int fd);
 /* Middleware*/
 char **str_to_tokens(char *str);
 char *get_fullpath(char *command);
+void free_reset(char *line);
 
 /* Controllers */
 int exit_sh(void);

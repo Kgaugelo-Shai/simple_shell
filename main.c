@@ -21,8 +21,7 @@ int main(int argc __attribute__((unused)), char **argv)
         /* Check if line is empty */
         if (strcmp(line, "\n") == 0)
         {
-            free(line);   /* Free line if it's just a newline */
-            line = RESET;  /* Reset pointer to prevent double free */
+            free_reset(line);  /* Reset pointer to prevent double free */
             continue;
         }
         /* Tokenize input into array of commands and args */
@@ -39,8 +38,7 @@ int main(int argc __attribute__((unused)), char **argv)
         {
             free(tokens);   /* Free tokens on error */
             tokens = RESET;  /* Reset pointer to prevent double free */
-            free(line);     /* Free line on error */
-            line = RESET;    /* Reset pointer to prevent double free */
+            free_reset(line);    /* Reset pointer to prevent double free */
             exit(EXIT_FAILURE);
         }
         /* Get the full path of the command */
@@ -58,8 +56,7 @@ int main(int argc __attribute__((unused)), char **argv)
         }
         free(tokens);    /* Free tokens after use */
         tokens = RESET;
-        free(line);     /* Free line on error */
-        line = RESET;  /* Reset pointer to prevent double free */
+        free_reset(line);    /* Reset pointer to prevent double free */
         size = 0;
     }
     return 0;
