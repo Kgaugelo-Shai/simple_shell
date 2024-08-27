@@ -4,9 +4,9 @@
  */
 int main(int argc __attribute__((unused)), char **argv)
 {
-    char *line = NULL;
+    char *line = RESET;
     size_t size = 0;
-    char **tokens = NULL, *fullpath = NULL;
+    char **tokens = RESET, *fullpath = RESET;
     int child;
 
     while (1)
@@ -22,7 +22,7 @@ int main(int argc __attribute__((unused)), char **argv)
         if (strcmp(line, "\n") == 0)
         {
             free(line);   /* Free line if it's just a newline */
-            line = NULL;  /* Reset pointer to prevent double free */
+            line = RESET;  /* Reset pointer to prevent double free */
             continue;
         }
         /* Tokenize input into array of commands and args */
@@ -31,16 +31,16 @@ int main(int argc __attribute__((unused)), char **argv)
         if (tokens == NULL || tokens[0] == NULL)
         {
             free(tokens);   /* Free tokens if allocation failed or no input */
-            tokens = NULL;  /* Reset pointer to prevent double free */
+            tokens = RESET;  /* Reset pointer to prevent double free */
             continue;
         }
         /* Check for builtin commands */
         if (handle_builtins(tokens) == -1)
         {
             free(tokens);   /* Free tokens on error */
-            tokens = NULL;  /* Reset pointer to prevent double free */
+            tokens = RESET;  /* Reset pointer to prevent double free */
             free(line);     /* Free line on error */
-            line = NULL;    /* Reset pointer to prevent double free */
+            line = RESET;    /* Reset pointer to prevent double free */
             exit(EXIT_FAILURE);
         }
         /* Get the full path of the command */
@@ -54,12 +54,12 @@ int main(int argc __attribute__((unused)), char **argv)
         if (fullpath != tokens[0])
         {
             free(fullpath);
-            fullpath = NULL; /* Reset pointer to prevent double free */
+            fullpath = RESET; /* Reset pointer to prevent double free */
         }
         free(tokens);    /* Free tokens after use */
-        tokens = NULL;
+        tokens = RESET;
         free(line);     /* Free line on error */
-        line = NULL;  /* Reset pointer to prevent double free */
+        line = RESET;  /* Reset pointer to prevent double free */
         size = 0;
     }
     return 0;

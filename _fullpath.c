@@ -16,7 +16,7 @@ char *get_fullpath(char *command)
 	/* Allocate memory to hold a duplicate of PATH */
 	dup_path = malloc(strlen(path) + 1);
 	if (dup_path == NULL)
-		return NULL;
+		return (NULL);
 
 	/* Create a copy of the PATH variable */
 	strcpy(dup_path, path);
