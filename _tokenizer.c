@@ -4,7 +4,6 @@
  * str - string to
  * returns - pointer to array of tokens
  * */
-
 char **str_to_tokens(char *str)
 {
 	char **tokenArr; /* pointer to array of tokens*/
