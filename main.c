@@ -60,6 +60,7 @@ int main(int argc __attribute__((unused)), char **argv)
         tokens = NULL;
         free(line);     /* Free line on error */
         line = NULL;  /* Reset pointer to prevent double free */
+        size = 0;
     }
     return 0;
 }

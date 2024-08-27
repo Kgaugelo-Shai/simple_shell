@@ -37,9 +37,6 @@ int env_sh(void);
 int handle_builtins(char **tokens);
 int exec_cmd(char *fullpath, char**tokens);
 
-/* Handlers*/
-void errorHandler(int num);
-
 /* utilities */
 void _puts(char *str);
 
