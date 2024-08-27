@@ -25,12 +25,12 @@ int exec_cmd(char *fullpath, char **tokens)
 	}
 	else{
 		 do {
-            if (waitpid(child, &status, 0) == -1) 
-            {
-                perror("waitpid");
-                return (-1); /* Indicate failure to wait */
-            }
-        } while (!WIFEXITED(status) && !WIFSIGNALED(status));
+			if (waitpid(child, &status, 0) == -1) 
+			{
+				perror("waitpid");
+				return (-1); /* Indicate failure to wait */
+			}
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 	/* Parent process waits for child*/
 	return (0);

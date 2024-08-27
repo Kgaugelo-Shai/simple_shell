@@ -6,12 +6,10 @@
  */
 char *get_fullpath(char *command)
 {
-	char *path, *dup_path, *token, *fullpath;
+	char *path = getenv(PATH), *dup_path, *token, *fullpath;
 	int tok_len, cmd_len = strlen(command);
 
-	/* Get the PATH environment variable */
-	if ((path = getenv("PATH")) == NULL)
-		return NULL;
+
 	/* Allocate memory to hold a duplicate of PATH */
 	if (!(dup_path = malloc(strlen(path) + 1)))
 		return (NULL);
@@ -37,7 +35,7 @@ char *get_fullpath(char *command)
 		if (access(fullpath, X_OK) == 0)
 		{
 			free(dup_path);
-			return fullpath; /* Return the full path if executable */
+			return (fullpath); /* Return the full path if executable */
 		}
 		/* Free memory if not executable and continue */
 		free(fullpath);
