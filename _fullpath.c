@@ -3,6 +3,7 @@
 /**
  * get_fullpath - searches for PATH variable for a command
  * @command: command from user
+ * Return: 1
  */
 char *get_fullpath(char *command)
 {

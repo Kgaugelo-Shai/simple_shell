@@ -1,8 +1,10 @@
 #include "shell.h"
+
 /**
  * _puts - prints string to STDOUT_FILENO
- * str - string to print
+ * @str: string to print
  */
+
 void _puts(char *str)
 {
 	unsigned int len;
@@ -14,7 +16,7 @@ void _puts(char *str)
 
 /**
  * prompt - prints prompt "$ " to terminal
- * fd - file descriptor of type int
+ * @fd: file descriptor of type int
  */
 void prompt(int fd)
 {

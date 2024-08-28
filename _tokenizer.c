@@ -1,9 +1,10 @@
 #include "shell.h"
+
 /**
  * str_to_tokens - tokenizes a string
- * str - string to
- * returns - pointer to array of tokens
- * */
+ * @str: string to
+ * Return: pointer to array of tokens
+ */
 
 char **str_to_tokens(char *str)
 {
