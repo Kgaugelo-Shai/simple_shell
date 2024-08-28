@@ -11,6 +11,7 @@
 #define PROMPT "$ "
 #define INPUT_BUFFER 1024
 #define RESET NULL
+#define PATH "PATH"
 extern char **environ;
 
 /**

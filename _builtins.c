@@ -10,8 +10,12 @@ int exit_sh(void)
 }
 
 /**
+<<<<<<< HEAD
  * env_sh - prints the environment variable
  * Return: 0
+=======
+ * env_sh - builitin function that prints environment variables
+>>>>>>> 884a61aae45d0fbf39f18f749838ead3ad0aa85a
  */
 int env_sh(void)
 {
@@ -20,7 +24,6 @@ int env_sh(void)
 	while (environ[i])
 	{
 		write(STDOUT_FILENO, environ[i], strlen(environ[i]));
-		write(STDOUT_FILENO, "\n", 1);
 		i++;
 	}
 

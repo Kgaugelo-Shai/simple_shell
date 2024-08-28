@@ -2,10 +2,16 @@
 
 /**
  * str_to_tokens - tokenizes a string
+<<<<<<< HEAD
  * @str: string to
  * Return: pointer to array of tokens
  */
 
+=======
+ * str - string to
+ * returns - pointer to array of tokens
+ */
+>>>>>>> 884a61aae45d0fbf39f18f749838ead3ad0aa85a
 char **str_to_tokens(char *str)
 {
 	char **tokenArr; /* pointer to array of tokens*/

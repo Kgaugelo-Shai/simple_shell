@@ -11,6 +11,8 @@ int exec_cmd(char *fullpath, char **tokens)
 	int status;
 	char **envp = environ;
 
+	if (tokens == NULL || *tokens == NULL || fullpath == NULL)
+		return (0);
 	/* create child process to execute command */
 	child = fork();
 	if (child == -1)
@@ -26,10 +28,16 @@ int exec_cmd(char *fullpath, char **tokens)
 			return (-1);
 		}
 	}
+<<<<<<< HEAD
 	else
 	{
 		do {
 			if (waitpid(child, &status, 0) == -1)
+=======
+	else{
+		 do {
+			if (waitpid(child, &status, 0) == -1) 
+>>>>>>> 884a61aae45d0fbf39f18f749838ead3ad0aa85a
 			{
 				perror("waitpid");
 				return (-1); /* Indicate failure to wait */
