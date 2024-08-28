@@ -28,17 +28,9 @@ int exec_cmd(char *fullpath, char **tokens)
 			return (-1);
 		}
 	}
-<<<<<<< HEAD
-	else
-	{
-		do {
-			if (waitpid(child, &status, 0) == -1)
-=======
 	else{
 		 do {
-			if (waitpid(child, &status, 0) == -1) 
->>>>>>> 884a61aae45d0fbf39f18f749838ead3ad0aa85a
-			{
+			if (waitpid(child, &status, 0) == -1)			{
 				perror("waitpid");
 				return (-1); /* Indicate failure to wait */
 			}
