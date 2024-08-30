@@ -32,7 +32,7 @@ void prompt(int fd);
 char **str_to_tokens(char *str);
 char *get_fullpath(char *command);
 void free_reset(char *line);
-
+char *get_command(char *input);
 /* Controllers */
 int exit_sh(void);
 int env_sh(void);
