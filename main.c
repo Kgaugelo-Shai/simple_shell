@@ -42,7 +42,7 @@ int main(void)
 		/* execute command*/
 		child = exec_cmd(fullpath, tokens);
 		if (child == -1)
-			return (EXIT_SUCCESS);
+			break;
 		cleanup_tokens(tokens);
 		clean_paths(fullpath, _flag);
 	}
