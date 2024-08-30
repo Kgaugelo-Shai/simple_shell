@@ -5,15 +5,25 @@
 int main(int argc __attribute__((unused)), char **argv)
 {
 	char *line = RESET;
+	size_t size = 0;
 	char **tokens = RESET, *fullpath = RESET;
 	int child;
 
 	while (1)
 	{
 		/* Prompt user for input */
-		line = get_command(line);
-		if (!line || !*line)/* EOF detected, exit the loop */
-			break;
+		prompt(STDIN_FILENO);
+		if (getline(&line, &size, stdin) == -1)
+		{
+			free(line);   /* Free line if getline fails */
+			return (EXIT_SUCCESS);
+		}
+		/* Check if line is empty */
+		if (strcmp(line, "\n") == 0)
+		{
+			free_reset(line);  /* Reset pointer to prevent double free */
+			continue;
+		}
 		/* Tokenize input into array of commands and args */
 		tokens = str_to_tokens(line);
 		/* Check if tokens are empty */
@@ -46,6 +56,7 @@ int main(int argc __attribute__((unused)), char **argv)
 		free(tokens);    /* Free tokens after use */
 		tokens = RESET;
 		free_reset(line);    /* Reset pointer to prevent double free */
+		size = 0;
 	}
 	return 0;
 }
