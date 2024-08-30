@@ -1,12 +1,15 @@
 #include "shell.h"
 
-/**
- * exit_sh - exits the shell
- * Return: returns -1
- */
-int exit_sh(void)
+void exit_sh(char **args)
 {
-	return (-1);
+	int status = 0;
+
+	if (args[1])
+	{
+		status = atoi(args[1]);
+	}
+	cleanup_tokens(args);
+	exit(status);
 }
 
 /**
@@ -19,9 +22,22 @@ int env_sh(void)
 
 	while (environ[i])
 	{
-		write(STDOUT_FILENO, environ[i], strlen(environ[i]));
+		_puts(environ[i]);
+		_putchar('\n');
 		i++;
 	}
 
 	return (0);
+}
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
 }

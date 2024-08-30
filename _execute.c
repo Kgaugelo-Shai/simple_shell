@@ -11,12 +11,15 @@ int exec_cmd(char *fullpath, char **tokens)
 	int status;
 	char **envp = environ;
 
-	if (tokens == NULL || *tokens == NULL || fullpath == NULL)
+	if (tokens == NULL || *tokens == NULL)
+		return (0);
+	if (handle_builtins(tokens))
 		return (0);
 	/* create child process to execute command */
 	child = fork();
 	if (child == -1)
 	{
+		perror("fork");
 		exit(EXIT_FAILURE);
 	}
 	/* check for child process */
@@ -34,7 +37,7 @@ int exec_cmd(char *fullpath, char **tokens)
 			if (waitpid(child, &status, 0) == -1)
 			{
 				perror("waitpid");
-				return (-1); /* Indicate failure to wait */
+				return (EXIT_FAILURE); /* Indicate failure to wait */
 			}
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}

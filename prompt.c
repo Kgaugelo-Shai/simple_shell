@@ -18,7 +18,7 @@ void _puts(char *str)
  * prompt - prints prompt "$ " to terminal
  * @fd: file descriptor of type int
  */
-void prompt(int fd)
+void _prompt(int fd)
 {
 	/* if shell is in interactive mode print prompt */
 	if (isatty(fd))

@@ -5,14 +5,13 @@
  * @command: command from user
  * Return: 1
  */
-char *get_fullpath(char *command)
+char *get_fullpath(char *path, char *command)
 {
-	char *path = getenv(PATH), *dup_path, *token, *fullpath;
+	char *dup_path, *token, *fullpath;
 	int tok_len, cmd_len = strlen(command);
-
-
 	/* Allocate memory to hold a duplicate of PATH */
-	if (!(dup_path = malloc(strlen(path) + 1)))
+	dup_path = malloc(strlen(path) + 1);
+	if (dup_path == NULL)
 		return (NULL);
 	/* Create a copy of the PATH variable */
 	strcpy(dup_path, path);
@@ -21,8 +20,9 @@ char *get_fullpath(char *command)
 	while (token)
 	{
 		tok_len = strlen(token); /* Length of the directory token */
-		/* Allocate memory for fullpath */ 
-		if (!(fullpath = malloc(tok_len + cmd_len + 2))) /* +2 for '/' and '\0' */
+		/* Allocate memory for fullpath */
+		fullpath = malloc(tok_len + cmd_len + 2);
+		if (fullpath == NULL) /* +2 for '/' and '\0' */
 		{
 			free(dup_path);
 			return (NULL);
