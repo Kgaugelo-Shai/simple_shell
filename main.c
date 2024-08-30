@@ -39,7 +39,7 @@ int main(int argc __attribute__((unused)), char **argv)
 			free(tokens);   /* Free tokens on error */
 			tokens = RESET;  /* Reset pointer to prevent double free */
 			free_reset(line);    /* Reset pointer to prevent double free */
-			exit(EXIT_FAILURE);
+			exit(EXIT_SUCCESS);
 		}
 		if ((fullpath = get_fullpath(tokens[0])) == NULL)  /* Get the full path of the command */
 			fullpath = tokens[0];
