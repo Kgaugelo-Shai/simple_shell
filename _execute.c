@@ -8,13 +8,13 @@
 int exec_cmd(char *fullpath, char **tokens)
 {
 	pid_t child;
-	int status;
+	int status = 0;
 	char **envp = environ;
 
 	if (tokens == NULL || *tokens == NULL)
-		return (0);
+		return (status);
 	if (handle_builtins(tokens))
-		return (0);
+		return (status);
 	/* create child process to execute command */
 	child = fork();
 	if (child == -1)
