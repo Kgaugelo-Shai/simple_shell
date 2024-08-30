@@ -40,7 +40,7 @@ char *get_fullpath(char *path, char *command);
 /* Controllers */
 void exit_sh(char **args);
 int env_sh(void);
-int handle_builtins(char **tokens);
+int handle_builtins(char **tokens, int status);
 int exec_cmd(char *fullpath, char**tokens);
 void cleanup_tokens(char **tokens);
 void clean_paths(char *fullpath, int _flag);
