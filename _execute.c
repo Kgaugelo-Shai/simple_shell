@@ -13,7 +13,7 @@ int exec_cmd(char *fullpath, char **tokens)
 
 	if (tokens == NULL || *tokens == NULL)
 		return (status);
-	if (handle_builtins(tokens, status))
+	if (handle_builtins(tokens))
 		return (status);
 	/* create child process to execute command */
 	child = fork();
