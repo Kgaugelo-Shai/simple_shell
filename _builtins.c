@@ -2,7 +2,7 @@
 
 void exit_sh(char **args)
 {
-	int status = -1;
+	int status = 0;
 
 	if (args[1])
 	{

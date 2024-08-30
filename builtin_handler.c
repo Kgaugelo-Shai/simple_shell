@@ -10,7 +10,10 @@ int handle_builtins(char **tokens)
 	if (!tokens[0])
 		return (0);
 	if (!strcmp(tokens[0], "exit"))
+	{
 		exit_sh(tokens);
+		return (1);
+	}
 	else if (!strcmp(tokens[0], "env"))
 		env_sh();
 	else
