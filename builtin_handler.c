@@ -7,16 +7,25 @@
  */
 int handle_builtins(char **tokens)
 {
-	if (!tokens[0])
-		return (0);
-	if (!strcmp(tokens[0], "exit"))
-	{
-		exit_sh(tokens);
+	size_t i = 0;
+
+	builtin_cmds cmds[] = {
+		{"exit", exit_sh},
+		{"env", env_sh},
+		{NULL, NULL}
+	};
+	/* check if there was a command provided */
+	if (tokens == NULL || tokens[0] == NULL)
 		return (1);
+	/* iterate through array of commands */
+	for (i = 0; cmds[i].command != NULL; i++)
+	{
+		if (strcmp(tokens[0], cmds[i].command) == 0)
+		{
+			/* execute builtin command if found */
+			return ((cmds[i].p)());
+		}
 	}
-	else if (!strcmp(tokens[0], "env"))
-		env_sh();
-	else
-		return (0);
+	/* if command was not found in builtin list return 1(success) */
 	return (1);
 }

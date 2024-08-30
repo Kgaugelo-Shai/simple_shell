@@ -7,10 +7,8 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <ctype.h>
 /* environment vairables */
 #define PROMPT "$ "
-#define DELIM " \t\n\r"
 #define INPUT_BUFFER 1024
 #define RESET NULL
 #define PATH "PATH"
@@ -27,23 +25,19 @@ typedef struct builtin_cmds
 	int (*p)(void); /* Pointer to a function */
 } builtin_cmds;
 
-/* prompt */
-void _prompt(int fd);
-char *get_input(void);
-int _putchar(char c);
-/* Middleware */
-char **create_tokens(char *input);
-char **str_to_tokens(char *str, const char *delim);
-char *get_fullpath(char *path, char *command);
+/* config */
+void prompt(int fd);
 
+/* Middleware*/
+char **str_to_tokens(char *str);
+char *get_fullpath(char *command);
+void free_reset(char *line);
 
 /* Controllers */
-void exit_sh(char **args);
+int exit_sh(void);
 int env_sh(void);
 int handle_builtins(char **tokens);
 int exec_cmd(char *fullpath, char**tokens);
-void cleanup_tokens(char **tokens);
-void clean_paths(char *fullpath, int _flag);
 
 /* utilities */
 void _puts(char *str);
