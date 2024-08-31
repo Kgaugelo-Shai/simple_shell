@@ -1,14 +1,14 @@
 #include "shell.h"
 /**
- * helpercreate_tokens - helper function
+ * token_helper - helper function ...
  * @input_cpy: input
- * Return: NOTHING
+ * Return: void
  */
-void helpercreate_tokens(char *input_cpy)
+void token_helper(char *input_cpy)
 {
 	if (!input_cpy)
 	{
-		perror("strdup() failed");
+		perror("strdup()- error");
 		return;
 	}
 }
@@ -24,7 +24,7 @@ char **create_tokens(char *value)
 	int num_tokens = 0, i = 0, j;
 
 	input_cpy = strdup(value);
-	helpercreate_tokens(input_cpy);
+	token_helper(input_cpy);
 	token = _strtok(value, delim);
 	while (token)
 	{
@@ -35,7 +35,7 @@ char **create_tokens(char *value)
 	tokens = malloc(sizeof(char *) * num_tokens);
 	if (!tokens)
 	{
-		perror("malloc() failed");
+		perror("malloc() error");
 		free(input_cpy);
 		return (NULL);
 	}
@@ -45,7 +45,7 @@ char **create_tokens(char *value)
 		tokens[i] = strdup(token);
 		if (!tokens[i])
 		{
-			perror("strdup() failed");
+			perror("strdup() error");
 			for (j = 0; j < i; j++)
 				free(tokens[j]);
 			free(tokens);

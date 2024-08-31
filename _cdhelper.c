@@ -12,9 +12,9 @@ int _cd_dir(char *path)
 		path = DD;
 
 	if (_strcmp(path, "cd") == 0)
-		_root = _getenv("HOME");
-	else if (path[0] == '\0' || _strcmp(path, "~") == 0)
-		_root = _getenv("HOME");
+		_root = _getenv(HOME_DIR);
+	else if (path[0] == '\0' || _strcmp(path, DD) == 0)
+		_root = _getenv(HOME_DIR);
 	else
 		_root = path;
 

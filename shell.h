@@ -5,6 +5,7 @@
 #define PATH "PATH"
 #define PROMPT "$ "
 #define DD "~"
+#define HOME_DIR "HOME"
 #define PATH_MAX 4096
 
 extern char **environ;
