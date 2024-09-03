@@ -1,85 +1,45 @@
 #ifndef SHELL_H
 #define SHELL_H
 
-/*macros*/
-#define PATH "PATH"
-#define PROMPT "$ "
-#define DD "~"
-#define HOME_DIR "HOME"
-#define PATH_MAX 4096
-
-extern char **environ;
-
-/*classes*/
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
-#include <limits.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <stdbool.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/stat.h>
-#include <string.h>
-#include <ctype.h>
-#include <stddef.h>
-#include <stdlib.h>
+/* environment vairables */
+#define PROMPT "$ "
+#define INPUT_BUFFER 1024
+#define RESET NULL
+#define PATH "PATH"
+extern char **environ;
 
+/**
+ * struct builtin_cmds - struct template for builtin commands
+ * @command: name of the builtin command
+ * @p: pointer to builtin funtion
+ */
+typedef struct builtin_cmds
+{
+	char *command;
+	int (*p)(void); /* Pointer to a function */
+} builtin_cmds;
 
-/* getenv */
-char *_getenv(char *path);
+/* config */
+void prompt(int fd);
 
-/* eval */
-int eval(char *tokens[]);
+/* Middleware*/
+char **str_to_tokens(char *str);
+char *get_fullpath(char *command);
+void free_reset(char *line);
 
-/* tokenize */
-char **create_tokens(char *value);
+/* Controllers */
+int exit_sh(void);
+int env_sh(void);
+int handle_builtins(char **tokens);
+int exec_cmd(char *fullpath, char**tokens);
 
-
-/* issapce */
-int _isspace(char *_command);
-
-ssize_t my_getline(char **lineptr, size_t *n, FILE *stream);
-
-/* getpath */
-char *fetch_path(char *cmd_path);
-
-/* builtins */
-int builtin_ctrlr(char **tokens, char *inputs);
-void env_sh();
-void exit_sh(char **exit_st);
-
-
-/* handles comments */
-void hashtags(char *_command);
-/* setenv */
-int is_valid(char *_command);
-int key_val_env(char *key, char *value);
-int _set_nev(int rw, const char *key, const char *value);
-void _set_nev_sh(char **variables);
-
-/* cd dir */
-int _cd_dir(char *path);
-int _custom_cd(char *path);
-
-/* unsetenv */
-int _unsetenv_sh(char *variable);
-void _printenv(void);
-
-/*util lib 1*/
-int _putchar(char c);
-int _strlen(char *s);
-char _puts(char *str);
-
-/* util lib 2 */
-int _strcmp(char *s1, char *s2);
-char *_strcat(char *dest, char *src);
-char *_strdup(char *str);
-char *_strcpy(char *dest, char *src);
-char *_strtok(char *str, const char *delim);
-
-/* free */
-void safe_exit(char *input);
-void cleanup_tkns(char **tokens);
+/* utilities */
+void _puts(char *str);
 
 #endif

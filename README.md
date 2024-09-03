@@ -1,4 +1,3 @@
-# simple_shell
 # About the Simple Shell Project
 The Simple Shell is a Unix command interpreter created for a project at ALX School.
 
